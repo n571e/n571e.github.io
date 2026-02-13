@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页 | Personal Homepage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #95a5a6;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 30px 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .info-value a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+
+        .publication {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .publication:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .publication h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .publication .authors {
+            color: #555;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        .publication .venue {
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .publication .links {
+            margin-top: 10px;
+        }
+
+        .publication .links a {
+            display: inline-block;
+            padding: 5px 15px;
+            margin-right: 10px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .publication .links a:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            header, section {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .info-label {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-image">👤</div>
+            <h1>您的姓名</h1>
+            <p class="subtitle">研究方向 | 职称/职位</p>
+        </header>
+
+        <section id="about">
+            <h2>个人信息 | About Me</h2>
+            <div class="info-grid">
+                <div class="info-label">单位：</div>
+                <div class="info-value">您所在的大学/机构</div>
+                
+                <div class="info-label">职称：</div>
+                <div class="info-value">教授/副教授/博士生等</div>
+                
+                <div class="info-label">研究方向：</div>
+                <div class="info-value">计算机科学、人工智能、机器学习等</div>
+                
+                <div class="info-label">邮箱：</div>
+                <div class="info-value"><a href="mailto:your.email@example.com">your.email@example.com</a></div>
+                
+                <div class="info-label">GitHub：</div>
+                <div class="info-value"><a href="https://github.com/n571e" target="_blank">github.com/n571e</a></div>
+            </div>
+            <p style="margin-top: 20px; line-height: 1.8;">
+                在此处添加您的个人简介。可以介绍您的教育背景、研究兴趣、学术成就等。
+                这是一个简单的个人主页模板，您可以根据需要自由修改内容。
+            </p>
+        </section>
+
+        <section id="publications">
+            <h2>论文发表 | Publications</h2>
+            
+            <div class="publication">
+                <h3>论文标题示例：基于深度学习的图像识别研究</h3>
+                <p class="authors">作者1, 作者2, <strong>您的姓名</strong>, 作者3</p>
+                <p class="venue">会议/期刊名称, 2024</p>
+                <div class="links">
+                    <a href="#" target="_blank">PDF</a>
+                    <a href="#" target="_blank">Code</a>
+                    <a href="#" target="_blank">Slides</a>
+                </div>
+            </div>
+
+            <div class="publication">
+                <h3>论文标题示例：自然语言处理中的注意力机制</h3>
+                <p class="authors"><strong>您的姓名</strong>, 合作者1, 合作者2</p>
+                <p class="venue">顶级会议名称 (CCF A), 2023</p>
+                <div class="links">
+                    <a href="#" target="_blank">PDF</a>
+                    <a href="#" target="_blank">arXiv</a>
+                </div>
+            </div>
+
+            <div class="publication">
+                <h3>论文标题示例：强化学习在机器人控制中的应用</h3>
+                <p class="authors">作者1, <strong>您的姓名</strong>, 作者2</p>
+                <p class="venue">SCI期刊名称, 2023</p>
+                <div class="links">
+                    <a href="#" target="_blank">PDF</a>
+                    <a href="#" target="_blank">DOI</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 您的姓名. All rights reserved.</p>
+            <p style="margin-top: 10px;">Last updated: February 2024</p>
+        </footer>
+    </div>
+</body>
+</html>
