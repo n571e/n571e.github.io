@@ -4,8 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页 | Personal Homepage</title>
+    <title>张天成 | Tiancheng Zhang - Personal Homepage</title>
     <style>
+        :root {
+            /* Color Palette */
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --accent-color: #3b82f6;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,168 +28,252 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding-bottom: 40px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: underlined;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 20px;
         }
 
+        /* Header / Hero Section */
         header {
-            background-color: #fff;
+            background-color: var(--card-bg);
             padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        header .subtitle {
-            font-size: 1.2em;
-            color: #7f8c8d;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
 
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 20px auto;
-            background-color: #e0e0e0;
+            background-color: #e0e7ff;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            border: 4px solid #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3em;
-            color: #95a5a6;
         }
 
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-content h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .header-content p {
+            color: var(--text-light);
+            margin-bottom: 6px;
+            font-size: 1.05em;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Sections */
         section {
-            background-color: #fff;
+            background-color: var(--card-bg);
             padding: 30px 40px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         section h2 {
-            font-size: 1.8em;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #111827;
             margin-bottom: 20px;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 15px;
-            margin-bottom: 10px;
+        section h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary-color);
+            margin-right: 12px;
+            border-radius: 3px;
         }
 
-        .info-label {
-            font-weight: bold;
-            color: #555;
+        h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            margin-top: 20px;
         }
 
-        .info-value {
-            color: #333;
+        h3:first-of-type {
+            margin-top: 0;
         }
 
-        .info-value a {
-            color: #3498db;
-            text-decoration: none;
+        /* Lists */
+        ul {
+            list-style-position: inside;
+            margin-left: 10px;
         }
 
-        .info-value a:hover {
-            text-decoration: underline;
+        li {
+            margin-bottom: 8px;
+            color: #4b5563;
         }
 
-        .publication {
+        strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        /* Education & Jobs */
+        .experience-item {
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px dashed var(--border-color);
         }
 
-        .publication:last-child {
+        .experience-item:last-child {
             border-bottom: none;
             padding-bottom: 0;
         }
 
-        .publication h3 {
-            font-size: 1.2em;
-            color: #2c3e50;
-            margin-bottom: 8px;
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
         }
 
-        .publication .authors {
-            color: #555;
-            margin-bottom: 5px;
-            font-style: italic;
+        .job-title {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #1f2937;
         }
 
-        .publication .venue {
-            color: #7f8c8d;
-            margin-bottom: 5px;
+        .job-meta {
+            color: var(--text-light);
+            font-size: 0.95em;
         }
 
-        .publication .links {
-            margin-top: 10px;
+        .job-details li {
+            position: relative;
+            padding-left: 20px;
+            list-style: none;
         }
 
-        .publication .links a {
-            display: inline-block;
-            padding: 5px 15px;
-            margin-right: 10px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9em;
+        .job-details li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
 
-        .publication .links a:hover {
-            background-color: #2980b9;
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            gap: 15px;
         }
 
+        .skill-category {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .skill-name {
+            font-weight: 700;
+            width: 120px;
+            flex-shrink: 0;
+            color: #374151;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
+            padding-top: 20px;
+            color: #9ca3af;
             font-size: 0.9em;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
+            header {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
             }
 
-            header,
+            .header-meta {
+                justify-content: center;
+            }
+
             section {
-                padding: 20px;
+                padding: 25px 20px;
             }
 
-            header h1 {
-                font-size: 2em;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
+            .job-header {
+                flex-direction: column;
                 gap: 5px;
             }
 
-            .info-label {
-                margin-top: 10px;
+            .skill-category {
+                flex-direction: column;
+            }
+
+            .skill-name {
+                margin-bottom: 5px;
             }
         }
     </style>
@@ -182,55 +281,149 @@
 
 <body>
     <div class="container">
+        <!-- Header -->
         <header>
-            <div class="profile-image">👤</div>
-            <h1>张天成</h1>
-            <p class="subtitle">CV | 多模态 | 大三在读</p>
-        </header>
-
-        <section id="about">
-            <h2>个人信息 | About Me</h2>
-            <div class="info-grid">
-                <div class="info-label">单位：</div>
-                <div class="info-value">zjut</div>
-
-                <div class="info-label">职称：</div>
-                <div class="info-value">本科生</div>
-
-                ```html
-                <div class="info-label">邮箱：</div>
-                <div class="info-value"><a href="mailto:302023315277@zjut.edu.cn">302023315277@zjut.edu.cn</a></div>
-                ```
-
-                <div class="info-label">GitHub：</div>
-                <div class="info-value"><a href="https://github.com/n571e" target="_blank">github.com/n571e</a></div>
+            <div class="profile-image">
+                <img src="avatar.jpg" alt="Tiancheng Zhang">
             </div>
-            <p style="margin-top: 20px; line-height: 1.8;">
-                在此处添加您的个人简介。可以介绍您的教育背景、研究兴趣、学术成就等。
-                这是一个简单的个人主页模板，您可以根据需要自由修改内容。
-            </p>
-        </section>
-
-        <section id="publications">
-            <h2>论文发表 | Publications</h2>
-
-            <div class="publication">
-                <h3>SIGMA-Lane: Scale-pyramId Gated MAmba for Temporally Consistent Video Lane Detection</h3>
-                <p class="authors"> <strong>Tiancheng Zhang</strong>, Mengmeng Wang</p>
-                <p class="venue"></p>
-                <div class="links">
-                    <a href="#" target="_blank">PDF</a>
-                    <a href="#" target="_blank">arXiv</a>
+            <div class="header-content">
+                <h1>张天成</h1>
+                <p>男 | 21岁 | 共青团员 | 浙江省杭州市西湖区</p>
+                <div class="header-meta">
+                    <span class="meta-item">📞 18692219462</span>
+                    <span class="meta-item">✉️ <a href="mailto:Ztc9447@163.com">Ztc9447@163.com</a></span>
+                    <span class="meta-item">🐙 <a href="https://github.com/n571e"
+                            target="_blank">github.com/n571e</a></span>
                 </div>
             </div>
+        </header>
 
-    </div>
-    </section>
+        <!-- Education -->
+        <section id="education">
+            <h2>教育背景 | Education</h2>
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">浙江工业大学 - 计算机科学与技术 (本科)</span>
+                    <span class="job-meta">2023.09 - 至今</span>
+                </div>
+                <ul class="job-details">
+                    <li><strong>核心成绩：</strong>GPA 3.71 | 综测专业排名 <strong>2/120</strong></li>
+                    <li><strong>英语水平：</strong>CET-4 (567) | CET-6 (567)</li>
+                </ul>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2026 Tiancheng Zhang. All rights reserved.</p>
-        <p style="margin-top: 10px;">Last updated: February 2026</p>
-    </footer>
+        <!-- Skills -->
+        <section id="skills">
+            <h2>专业技能 | Professional Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <span class="skill-name">编程语言</span>
+                    <span>Python (PyTorch, NumPy), C++ (STL, 面向对象)</span>
+                </div>
+                <div class="skill-category">
+                    <span class="skill-name">算法基础</span>
+                    <span>深入理解 Transformer 及 Mamba 架构；熟悉 CNN、RNN、GAN 等经典网络；掌握大模型微调 (PEFT/LoRA) 及检索增强 (RAG) 流程</span>
+                </div>
+                <div class="skill-category">
+                    <span class="skill-name">通用能力</span>
+                    <span>具备优秀的英文论文阅读与代码复现能力；熟悉 Linux 开发环境与 Git 协作</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internship -->
+        <section id="experience">
+            <h2>实习经历 | Internship</h2>
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">杭州智聊思远互联网科技有限公司 - 技术部算法岗位</span>
+                    <span class="job-meta">2024.10 - 2025.01</span>
+                </div>
+                <ul class="job-details">
+                    <li><strong>Agent架构与落地：</strong>搭建智能工作流，调用 DeepSeek 模型实现“性格测试 -> 鬼魂形象生成”的自动化链路。利用 LLM 直接生成 SVG
+                        矢量代码并渲染，实现了零成本的动态图像交互。</li>
+                    <li><strong>Prompt工程与约束控制：</strong> 针对通用模型在 SVG XML
+                        语法生成中易出现的标签闭合丢失、属性错误问题，设计了包含语法硬约束的系统提示词，构建了从“性格特征”到“12+个视觉参数”的精准映射逻辑。</li>
+                    <li><strong>抗干扰与稳定性优化：</strong>针对模型输出常渲染失败的痛点，采用 Few-Shot 与 Negative Prompting 策略严格清洗输出空间。经过多轮调试，将
+                        SVG 代码的自动解析成功率从 30% 提升至 99% 以上，确保用户的流畅体验。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <h2>项目经历 | Projects</h2>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">DroneLaneNet: 面向无人机低空视角下的车道线检测技术研究 (国家级创新训练项目 - 主持人)</span>
+                    <span class="job-meta">2025.05 - 至今</span>
+                </div>
+                <ul class="job-details">
+                    <li><strong>全栈SSM架构设计：</strong>针对无人机视角下车道线跨度大且易断裂的特性，提出一种基于全状态空间模型 (Full State Space Model)
+                        的视频车道线检测框架，彻底重构了基线算法 OMR (ECCV 2024)。</li>
+                    <li><strong>Vim骨干网络引入：</strong>用 Vision Mamba (Vim) 替换原有的 ResNet 骨干。利用双向 SSM 模块获取全局感受野，解决传统 CNN
+                        只能提取局部特征、难以捕捉低空视角下长距离车道线拓扑关系的问题。</li>
+                    <li><strong>线性时序细化：</strong>针对 OMR 中 ConvLSTM 算子计算冗余的问题，设计了 Temporal Mamba 模块进行替代。在保持 O(N)
+                        线性复杂度的前提下，实现了对历史帧特征的高效状态更新与记忆。</li>
+                    <li><strong>遮挡感知增强：</strong>保留并适配了 OMR 的潜在障碍物检测 (LOD) 机制，将障碍物掩码 (Obstacle Mask) 嵌入 Mamba
+                        的状态转移过程，使其在严重遮挡场景下能定向“唤醒”历史记忆进行特征补全。</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">车辆零部件表面缺陷智能检测系统 - 前端开发</span>
+                    <span class="job-meta">2024.12 - 2025.03</span>
+                </div>
+                <ul class="job-details">
+                    <li><strong>核心功能开发：</strong>基于 Vue.js + Element Plus 构建智能检测平台，负责视频/图像数据的上传、预处理及模型推理结果的实时回显。</li>
+                    <li><strong>算法结果可视化：</strong>设计并实现可视化标注层，将后端返回的 JSON 格式缺陷坐标 (Bounding Box)
+                        精准映射至原图/视频帧上，支持对缺陷类型的交互式查看与人工复核修正。</li>
+                    <li><strong>数据看板建设：</strong>开发多维度数据分析 Dashboard，将零部件缺陷率、检测耗时等指标转化为可视化图表，为生产质量改进提供直观的数据支撑。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Awards -->
+        <section id="awards">
+            <h2>获奖经历 | Honors & Awards</h2>
+            <ul class="job-details" style="padding-left: 20px;">
+                <li>第十九届挑战杯 主体赛 <strong>国金</strong></li>
+                <li>浙江省国际大学生创新大赛 (2025) 银奖</li>
+                <li>第十六届中国大学生服务外包创新创业大赛东部区域赛 三等奖</li>
+                <li>2024年浙江省高等数学竞赛 二等奖</li>
+                <li>2024年浙江省大学生物理创新（理论）竞赛三等奖</li>
+                <li>2023/2024学年浙江省政府奖学金、校优秀学生荣誉称号</li>
+                <li>2024/2025学年校优秀学生干部</li>
+                <li>校级、院级竞赛奖项十余项</li>
+            </ul>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications">
+            <h2>论文发表 | Publications</h2>
+            <div class="experience-item">
+                <div class="job-header">
+                    <span class="job-title">SIGMA-Lane: Scale-pyramId Gated MAmba for Temporally Consistent Video Lane
+                        Detection</span>
+                </div>
+                <p style="margin-bottom: 5px;"><strong>Tiancheng Zhang</strong>, Mengmeng Wang</p>
+                <div style="margin-top: 10px;">
+                    <a href="#"
+                        style="background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.9em; margin-right: 10px;">PDF
+                        (Coming Soon)</a>
+                    <a href="#"
+                        style="background: #e5e7eb; color: #374151; padding: 4px 12px; border-radius: 4px; font-size: 0.9em;">arXiv
+                        (Coming Soon)</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Tiancheng Zhang. <br>Built with ❤️ using AI Assistants.</p>
+        </footer>
     </div>
 </body>
 
