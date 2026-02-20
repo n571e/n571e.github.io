@@ -22,7 +22,7 @@
    - 相关链接（PDF、代码、幻灯片等）
 
 3. **头像**：
-   - 可以将 `<div class="profile-image">👤</div>` 替换为 `<img src="your-photo.jpg" class="profile-image">`
+   - 可以将 `<div class="profile-image">👤</div>` 替换为 ``
    - 然后添加对应的图片文件
 
 ## 部署

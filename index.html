@@ -7,18 +7,25 @@
     <title>张天成 | Tiancheng Zhang - Personal Homepage</title>
     <style>
         :root {
-            /* Color Palette */
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --text-color: #1f2937;
-            --text-light: #6b7280;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --accent-color: #3b82f6;
-            --border-color: #e5e7eb;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            /* Premium Low-key Colors */
+            --primary-color: #3b82f6;
+            /* Blue 500 */
+            --primary-hover: #2563eb;
+            /* Blue 600 */
+            --text-color: #334155;
+            /* Slate 700 */
+            --text-heading: #0f172a;
+            /* Slate 900 */
+            --text-light: #64748b;
+            /* Slate 500 */
+            --bg-color: #f8fafc;
+            /* Slate 50 */
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --card-shadow: 0 8px 32px rgba(15, 23, 42, 0.04);
+            --card-hover-shadow: 0 12px 48px rgba(15, 23, 42, 0.06);
+            --border-color: rgba(226, 232, 240, 0.6);
+            /* Slate 200 with opacity */
         }
 
         * {
@@ -29,80 +36,202 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-color);
             background-color: var(--bg-color);
-            padding-bottom: 40px;
+            padding-bottom: 60px;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient Background Blobs (Modern 流光) */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s infinite alternate ease-in-out;
+            will-change: transform;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(219, 234, 254, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            /* blue-100 */
+            animation-duration: 25s;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(224, 231, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            /* indigo-100 */
+            animation-duration: 22s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            top: 30%;
+            left: 50%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(241, 245, 249, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+            /* slate-100 */
+            animation-duration: 28s;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(3vw, -5vh) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-2vw, 4vh) scale(0.95);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
         }
 
         a {
             color: var(--primary-color);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: all 0.2s ease;
+            position: relative;
         }
 
         a:hover {
-            color: var(--secondary-color);
-            text-decoration: underlined;
+            color: var(--primary-hover);
+        }
+
+        /* Subtle underline effect for links */
+        p a::after,
+        .job-details a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-hover);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        p a:hover::after,
+        .job-details a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
         .container {
-            max-width: 960px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover-shadow);
+            background: rgba(255, 255, 255, 0.85);
         }
 
         /* Header / Hero Section */
         header {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 24px;
+            padding: 40px 48px;
+            margin-bottom: 32px;
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
         }
 
         .profile-image {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            background-color: #e0e7ff;
-            overflow: hidden;
+            background-color: #f1f5f9;
             flex-shrink: 0;
-            box-shadow: var(--shadow-md);
-            border: 4px solid #fff;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            /* Premium shadow */
+            padding: 4px;
+            /* Space for border */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(226, 232, 240, 1) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.4s ease;
+        }
+
+        header:hover .profile-image {
+            transform: scale(1.02);
         }
 
         .profile-image img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            border: 2px solid white;
         }
 
         .header-content h1 {
             font-size: 2.5em;
             font-weight: 800;
-            color: #111827;
-            margin-bottom: 10px;
-            letter-spacing: -0.02em;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .header-content p {
             color: var(--text-light);
-            margin-bottom: 6px;
+            margin-bottom: 12px;
             font-size: 1.05em;
+            font-weight: 500;
         }
 
         .header-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 16px;
+            margin-top: 16px;
             font-size: 0.95em;
         }
 
@@ -110,149 +239,245 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: var(--text-color);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .meta-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
         }
 
         /* Sections */
         section {
-            background-color: var(--card-bg);
-            padding: 30px 40px;
-            margin-bottom: 24px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        section:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            padding: 36px 48px;
+            margin-bottom: 32px;
         }
 
         section h2 {
-            font-size: 1.5em;
+            font-size: 1.4em;
             font-weight: 700;
-            color: #111827;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
+            color: var(--text-heading);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
+            letter-spacing: -0.01em;
         }
 
         section h2::before {
             content: '';
             display: inline-block;
-            width: 6px;
-            height: 24px;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--primary-color) 0%, rgba(59, 130, 246, 0.4) 100%);
+            margin-right: 14px;
+            border-radius: 4px;
+        }
+
+        /* Customizing list styles */
+        .job-details {
+            list-style: none;
+        }
+
+        .job-details li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .job-details li::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
             background-color: var(--primary-color);
-            margin-right: 12px;
-            border-radius: 3px;
-        }
-
-        h3 {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 8px;
-            margin-top: 20px;
-        }
-
-        h3:first-of-type {
-            margin-top: 0;
-        }
-
-        /* Lists */
-        ul {
-            list-style-position: inside;
-            margin-left: 10px;
-        }
-
-        li {
-            margin-bottom: 8px;
-            color: #4b5563;
+            opacity: 0.7;
         }
 
         strong {
-            color: #1f2937;
+            color: var(--text-heading);
             font-weight: 600;
         }
 
         /* Education & Jobs */
         .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 28px;
         }
 
         .experience-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+            margin-bottom: 0;
         }
 
         .job-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
         }
 
         .job-title {
             font-size: 1.15em;
             font-weight: 700;
-            color: #1f2937;
+            color: var(--text-heading);
+            line-height: 1.4;
         }
 
         .job-meta {
             color: var(--text-light);
-            font-size: 0.95em;
+            font-size: 0.9em;
+            font-weight: 500;
+            background: rgba(241, 245, 249, 0.8);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
         }
 
-        .job-details li {
-            position: relative;
-            padding-left: 20px;
-            list-style: none;
-        }
-
-        .job-details li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Skills */
+        /* Skills section (Badge style) */
         .skills-grid {
-            display: grid;
-            gap: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .skill-category {
             display: flex;
-            align-items: baseline;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .skill-name {
             font-weight: 700;
-            width: 120px;
-            flex-shrink: 0;
-            color: #374151;
+            font-size: 0.9em;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(203, 213, 225, 0.6);
+            color: var(--text-color);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .badge:hover {
+            background: #ffffff;
+            border-color: rgba(148, 163, 184, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            color: var(--text-heading);
+        }
+
+        .badge.highlight {
+            background: rgba(239, 246, 255, 0.6);
+            border-color: rgba(191, 219, 254, 0.8);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Publication Buttons */
+        .pub-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-color);
+            border: 1px solid rgba(203, 213, 225, 0.8);
+        }
+
+        .btn-secondary:hover {
+            background: #ffffff;
+            color: var(--text-heading);
+            transform: translateY(-1px);
+            border-color: rgba(148, 163, 184, 0.6);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding-top: 20px;
-            color: #9ca3af;
+            padding-top: 30px;
+            color: var(--text-light);
             font-size: 0.9em;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
             header {
                 flex-direction: column;
                 text-align: center;
-                padding: 30px 20px;
+                padding: 32px 24px;
+                gap: 24px;
             }
 
             .header-meta {
@@ -260,29 +485,32 @@
             }
 
             section {
-                padding: 25px 20px;
+                padding: 28px 24px;
             }
 
             .job-header {
                 flex-direction: column;
-                gap: 5px;
+                gap: 6px;
             }
 
-            .skill-category {
-                flex-direction: column;
-            }
-
-            .skill-name {
-                margin-bottom: 5px;
+            .job-meta {
+                align-self: flex-start;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <div class="container">
         <!-- Header -->
-        <header>
+        <header class="glass-card reveal">
             <div class="profile-image">
                 <img src="avatar.jpg" alt="Tiancheng Zhang">
             </div>
@@ -300,7 +528,7 @@
         </header>
 
         <!-- Education -->
-        <section id="education">
+        <section id="education" class="glass-card reveal">
             <h2>教育背景 | Education</h2>
             <div class="experience-item">
                 <div class="job-header">
@@ -315,26 +543,43 @@
         </section>
 
         <!-- Skills -->
-        <section id="skills">
+        <section id="skills" class="glass-card reveal">
             <h2>专业技能 | Professional Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <span class="skill-name">编程语言</span>
-                    <span>Python (PyTorch, NumPy), C++ (STL, 面向对象)</span>
+                    <span class="skill-name">编程语言 (Programming Languages)</span>
+                    <div class="badges-container">
+                        <span class="badge highlight">Python</span>
+                        <span class="badge">PyTorch</span>
+                        <span class="badge">NumPy</span>
+                        <span class="badge highlight">C++</span>
+                        <span class="badge">STL</span>
+                    </div>
                 </div>
                 <div class="skill-category">
-                    <span class="skill-name">算法基础</span>
-                    <span>深入理解 Transformer 及 Mamba 架构；熟悉 CNN、RNN、GAN 等经典网络；掌握大模型微调 (PEFT/LoRA) 及检索增强 (RAG) 流程</span>
+                    <span class="skill-name">算法基础与模型架构 (Algorithms & Architecture)</span>
+                    <div class="badges-container">
+                        <span class="badge highlight">Transformer</span>
+                        <span class="badge highlight">Mamba 架构</span>
+                        <span class="badge">CNN / RNN / GAN</span>
+                        <span class="badge highlight">大模型微调 (PEFT/LoRA)</span>
+                        <span class="badge highlight">检索增强 (RAG)</span>
+                    </div>
                 </div>
                 <div class="skill-category">
-                    <span class="skill-name">通用能力</span>
-                    <span>具备优秀的英文论文阅读与代码复现能力；熟悉 Linux 开发环境与 Git 协作</span>
+                    <span class="skill-name">通用能力 (General Abilities)</span>
+                    <div class="badges-container">
+                        <span class="badge">英文论文阅读</span>
+                        <span class="badge">代码复现能力</span>
+                        <span class="badge">Linux 开发环境</span>
+                        <span class="badge">Git 协作</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Internship -->
-        <section id="experience">
+        <section id="experience" class="glass-card reveal">
             <h2>实习经历 | Internship</h2>
             <div class="experience-item">
                 <div class="job-header">
@@ -353,12 +598,12 @@
         </section>
 
         <!-- Projects -->
-        <section id="projects">
+        <section id="projects" class="glass-card reveal">
             <h2>项目经历 | Projects</h2>
 
             <div class="experience-item">
                 <div class="job-header">
-                    <span class="job-title">DroneLaneNet: 面向无人机低空视角下的车道线检测技术研究 (国家级创新训练项目 - 主持人)</span>
+                    <span class="job-title">DroneLaneNet: 面向无人机低空视角下的车道线检测技术研究<br>(国家级创新训练项目 - 主持人)</span>
                     <span class="job-meta">2025.05 - 至今</span>
                 </div>
                 <ul class="job-details">
@@ -388,7 +633,7 @@
         </section>
 
         <!-- Awards -->
-        <section id="awards">
+        <section id="awards" class="glass-card reveal">
             <h2>获奖经历 | Honors & Awards</h2>
             <ul class="job-details" style="padding-left: 20px;">
                 <li>第十九届挑战杯 主体赛 <strong>国金</strong></li>
@@ -403,21 +648,17 @@
         </section>
 
         <!-- Publications -->
-        <section id="publications">
+        <section id="publications" class="glass-card reveal">
             <h2>论文发表 | Publications</h2>
-            <div class="experience-item">
+            <div class="experience-item" style="margin-bottom: 0;">
                 <div class="job-header">
                     <span class="job-title">SIGMA-Lane: Scale-pyramId Gated MAmba for Temporally Consistent Video Lane
                         Detection</span>
                 </div>
                 <p style="margin-bottom: 5px;"><strong>Tiancheng Zhang</strong>, Mengmeng Wang</p>
-                <div style="margin-top: 10px;">
-                    <a href="#"
-                        style="background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 4px; font-size: 0.9em; margin-right: 10px;">PDF
-                        (Coming Soon)</a>
-                    <a href="#"
-                        style="background: #e5e7eb; color: #374151; padding: 4px 12px; border-radius: 4px; font-size: 0.9em;">arXiv
-                        (Coming Soon)</a>
+                <div class="pub-links">
+                    <a href="#" class="btn btn-primary">PDF (Coming Soon)</a>
+                    <a href="#" class="btn btn-secondary">arXiv (Coming Soon)</a>
                 </div>
             </div>
         </section>
@@ -426,6 +667,48 @@
             <p>&copy; 2026 Tiancheng Zhang. <br>Built with ❤️ using AI Assistants.</p>
         </footer>
     </div>
+
+    <!-- 交互动效脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveal Animation Initialization
+            const reveals = document.querySelectorAll('.reveal');
+
+            // Configuration for the Intersection Observer
+            const observerOptions = {
+                root: null,
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: "0px 0px -50px 0px" // Trigger slightly before it comes fully into view
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add class to trigger animation
+                        entry.target.classList.add('active');
+                        // Optional: Unobserve element after it has been revealed once
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all reveal elements
+            reveals.forEach(reveal => {
+                observer.observe(reveal);
+            });
+
+            // Initial check for elements already in viewport on page load
+            setTimeout(() => {
+                reveals.forEach(reveal => {
+                    const rect = reveal.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    if (rect.top <= windowHeight) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }, 100);
+        });
+    </script>
 </body>
 
 </html>
