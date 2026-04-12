@@ -1,0 +1,11 @@
+# 站点基础配置
+baseurl      = "https://n571e.github.io/"
+languageCode = "zh-cn"
+title        = "Tiancheng's Blog"
+
+# 中日韩语言支持 — 正确处理摘要和字数统计
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+
+[pagination]
+    pagerSize = 8

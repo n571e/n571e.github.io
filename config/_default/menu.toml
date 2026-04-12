@@ -1,0 +1,53 @@
+# 主导航菜单
+[[main]]
+    identifier = "home"
+    name       = "首页"
+    url        = "/"
+    weight     = 1
+
+    [main.params]
+        icon = "home"
+
+[[main]]
+    identifier = "archives"
+    name       = "归档"
+    url        = "/page/archives/"
+    weight     = 2
+
+    [main.params]
+        icon = "archives"
+
+[[main]]
+    identifier = "search"
+    name       = "搜索"
+    url        = "/page/search/"
+    weight     = 3
+
+    [main.params]
+        icon = "search"
+
+[[main]]
+    identifier = "about"
+    name       = "关于"
+    url        = "/page/about/"
+    weight     = 4
+
+    [main.params]
+        icon = "user"
+
+# 社交链接
+[[social]]
+    identifier = "github"
+    name       = "GitHub"
+    url        = "https://github.com/n571e"
+
+    [social.params]
+        icon = "brand-github"
+
+[[social]]
+    identifier = "email"
+    name       = "Email"
+    url        = "mailto:302023315277@zjut.edu.cn"
+
+    [social.params]
+        icon = "mail"
