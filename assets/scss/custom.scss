@@ -8,4 +8,33 @@
     width: 120px !important;       /* 保持和默认一样的宽度 */
     object-fit: contain !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 首页文章卡片整体可点击化 (Stretched Link) */
+.article-list article {
+    position: relative; /* 为伪元素绝对定位提供基准 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-list article:hover {
+    transform: translateY(-2px); /* 悬浮时轻微上浮 */
+}
+
+/* 让标题链接生成的透明遮罩覆盖整个卡片 */
+.article-list article .article-title a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10; 
+}
+
+/* 保证卡片内部的特定交互链接（比如图片、分类目录）不会被覆盖而无法点击 */
+.article-list article .article-image a,
+.article-list article .article-meta a,
+.article-list article .article-category a {
+    position: relative;
+    z-index: 11;
 }
