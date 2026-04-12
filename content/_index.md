@@ -1,3 +1,3 @@
 ---
-title: "Tiancheng's Blog"
+title: "Khari Z's LogBook"
 ---

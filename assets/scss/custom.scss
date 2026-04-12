@@ -37,4 +37,14 @@
 .article-list article .article-category a {
     position: relative;
     z-index: 11;
+}
+
+/* 让侧边栏的全站标题更好看且引人注目 */
+.site-name a {
+    font-weight: 800 !important;
+    background: linear-gradient(90deg, var(--accent-color), #8B5CF6); /* 跟主题色呼应的渐变 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5rem !important; /* 调整字号，比原来稍大更有冲击力 */
+    letter-spacing: -0.02em;
 }

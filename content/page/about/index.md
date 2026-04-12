@@ -5,20 +5,20 @@ slug: "about"
 ---
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 2rem;">
-    <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 4px solid #fff; margin-bottom: 1rem;">
-        <img src="/img/avatar.jpg" alt="Tiancheng Zhang" style="width: 100%; height: 100%; object-fit: cover; margin: 0;">
-    </div>
-    <h1 style="margin: 0; font-size: 2.2rem; color: var(--body-text-color);">张天成 <span style="font-size: 1.5rem; color: var(--accent-color);">Tiancheng Zhang</span></h1>
-    <p style="font-size: 1.1rem; color: var(--body-text-muted); margin-top: 0.5rem; font-weight: 500;">CS Undergrad @ ZJUT · AI & CV Enthusiast</p>
-    
-    <div style="display: flex; gap: 15px; margin-top: 15px;">
-        <a href="https://github.com/n571e" target="_blank" style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); text-decoration: none; font-weight: 600; color: inherit; transition: background 0.2s;">
-            🔗 GitHub
-        </a>
-        <a href="mailto:302023315277@zjut.edu.cn" style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); text-decoration: none; font-weight: 600; color: inherit; transition: background 0.2s;">
-            ✉️ Email
-        </a>
-    </div>
+<div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 4px solid #fff; margin-bottom: 1rem;">
+<img src="/img/avatar.jpg" alt="Tiancheng Zhang" style="width: 100%; height: 100%; object-fit: cover; margin: 0;">
+</div>
+<h1 style="margin: 0; font-size: 2.2rem; color: var(--body-text-color);">张天成 <span style="font-size: 1.5rem; color: var(--accent-color);">Tiancheng Zhang</span></h1>
+<p style="font-size: 0.85rem; color: var(--body-text-muted); opacity: 0.85; letter-spacing: 0.1em; margin-top: 0.8rem; font-weight: 600; text-transform: uppercase; line-height: 1.6;">CS Undergrad @ ZJUT<br/>AI & CV Enthusiast</p>
+
+<div style="display: flex; gap: 15px; margin-top: 15px;">
+<a href="https://github.com/n571e" target="_blank" style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); text-decoration: none; font-weight: 600; color: inherit; transition: background 0.2s;">
+🔗 GitHub
+</a>
+<a href="mailto:302023315277@zjut.edu.cn" style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); text-decoration: none; font-weight: 600; color: inherit; transition: background 0.2s;">
+✉️ Email
+</a>
+</div>
 </div>
 
 ---
