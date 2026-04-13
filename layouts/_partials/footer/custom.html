@@ -1,0 +1,55 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const emailLinks = document.querySelectorAll('.menu-social a[href^="mailto:"]');
+    emailLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = this.closest('a').getAttribute('href').replace('mailto:', '');
+            
+            // 获取鼠标点击的位置
+            const clickX = e.clientX;
+            const clickY = e.clientY;
+            
+            navigator.clipboard.writeText(email).then(function() {
+                // 取消页面上已有的相同 toast 防止叠影
+                document.querySelectorAll('.email-copy-toast').forEach(t => t.remove());
+
+                let toast = document.createElement('div');
+                toast.className = 'email-copy-toast';
+                toast.textContent = "✅ 已复制";
+                toast.style.position = 'fixed';
+                toast.style.top = (clickY - 45) + 'px';
+                toast.style.left = clickX + 'px';
+                toast.style.transform = 'translate(-50%, 10px)';
+                toast.style.backgroundColor = 'var(--accent-color, #8B5CF6)';
+                toast.style.color = '#fff';
+                toast.style.padding = '6px 14px';
+                toast.style.borderRadius = '8px';
+                toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                toast.style.zIndex = '9999';
+                toast.style.fontSize = '12px';
+                toast.style.fontWeight = '600';
+                toast.style.pointerEvents = 'none'; // 免于遮挡继续点击
+                toast.style.transition = 'opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                toast.style.opacity = '0';
+                document.body.appendChild(toast);
+                
+                // 触发果冻弹出动画
+                requestAnimationFrame(() => {
+                    toast.style.opacity = '1';
+                    toast.style.transform = 'translate(-50%, 0)';
+                });
+                
+                // 1.5秒后消失
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translate(-50%, -10px)';
+                    setTimeout(() => toast.remove(), 200);
+                }, 1500);
+            }).catch(function() {
+                prompt("无法自动复制，请手动复制：", email);
+            });
+        });
+    });
+});
+</script>

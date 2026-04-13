@@ -47,4 +47,10 @@
     -webkit-text-fill-color: transparent;
     font-size: 1.5rem !important; /* 调整字号，比原来稍大更有冲击力 */
     letter-spacing: -0.02em;
+}
+
+/* 允许侧边栏的副标题通过 \n 或者回车来原生换行 */
+.site-description {
+    white-space: pre-line;
+    line-height: 1.6;
 }

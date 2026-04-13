@@ -2,7 +2,7 @@
 mainSections = ["post"]
 # RSS 输出完整内容
 rssFullContent = true
-favicon        = "img/avatar.jpg"
+favicon        = "img/favicon-logbook.svg"
 
 # 文章排序方式
 SortBy = "default"
@@ -17,7 +17,7 @@ SortBy = "default"
 
 [sidebar]
     emoji    = "💻"
-    subtitle = "CS Undergrad @ ZJUT · AI & CV Enthusiast"
+    subtitle = "CS Undergrad @ ZJUT\nAI & CV Enthusiast"
     avatar   = "avatar.jpg"
 
 [article]

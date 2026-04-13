@@ -9,3 +9,6 @@ hasCJKLanguage = true
 
 [pagination]
     pagerSize = 8
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"]

@@ -15,17 +15,13 @@ slug: "about"
 <a href="https://github.com/n571e" target="_blank" style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); text-decoration: none; font-weight: 600; color: inherit; transition: background 0.2s;">
 🔗 GitHub
 </a>
-<a href="mailto:302023315277@zjut.edu.cn" style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); text-decoration: none; font-weight: 600; color: inherit; transition: background 0.2s;">
-✉️ Email
-</a>
+<span style="padding: 6px 14px; border-radius: 20px; background: rgba(120, 120, 120, 0.1); font-weight: 600; color: inherit; user-select: all; cursor: text;" title="可直接双击复制">
+✉️ 302023315277@zjut.edu.cn
+</span>
 </div>
 </div>
 
 ---
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-
-<div>
 
 ### 🔬 研究方向
 
@@ -36,9 +32,7 @@ slug: "about"
 - **状态空间模型** - *(State Space Models & Mamba)*
 - **大语言模型微调与部署** - *(LLM Fine-tuning & Agent)*
 
-</div>
-
-<div>
+---
 
 ### 🚀 重点工作 / 论文
 
@@ -50,12 +44,4 @@ slug: "about"
 > <br/>
 > 👉 *基于 Mamba 架构设计的时序一致性视频车道线检测框架，适用于无人机等低空视角下的连续车道保持。*
 
-</div>
 
-</div>
-
----
-
-### 📝 博客初衷
-
-> 这个博客正如一片**数字花园（Digital Garden）**，用于记录我在探索计算机视觉、追踪大语言模型前沿技术，以及在日常工程实践中的所思、所悟、所学。所有的困惑与破局都会转化为文字在这里沉淀。希望这些文字也能在某一天，为你带来启发！
