@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
+  <!-- Definitions -->
+  <defs>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4B6BF5" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#4B6BF5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF5252" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF5252" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFC107" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFC107" stop-opacity="0"/>
+    </radialGradient>
+    
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.04"/>
+    </pattern>
+
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 0 L 5 10 z" fill="#FF5252"/>
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 0 L 5 10 z" fill="#FFC107" opacity="0.8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#0A0E17"/>
+  <rect width="1600" height="900" fill="url(#grid)" />
+  
+  <!-- Glows -->
+  <circle cx="200" cy="450" r="600" fill="url(#glow1)" />
+  <circle cx="1400" cy="650" r="500" fill="url(#glow2)" />
+  <circle cx="1300" cy="400" r="400" fill="url(#glow3)" />
+
+  <!-- Left Content -->
+  <g transform="translate(150, 0)">
+    <text x="0" y="380" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="64" font-weight="bold" fill="#ffffff" letter-spacing="2">预训练语言模型</text>
+    <text x="0" y="440" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="300" fill="#8896AF">从 BERT、T5 到 GPT/LLaMA 的主线分化</text>
+    <text x="0" y="490" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4B6BF5" letter-spacing="2">INFO FLOW / OBJECTIVE / ARCHITECTURE</text>
+
+    <!-- Architecture Map Box -->
+    <rect x="0" y="550" width="380" height="160" rx="16" fill="#151E32" stroke="#253250" stroke-width="2"/>
+    <text x="30" y="595" font-family="'PingFang SC', 'Consolas', sans-serif" font-size="20" font-weight="bold" fill="#A1B0D8">[ architecture map ]</text>
+    <text x="30" y="640" font-family="'PingFang SC', sans-serif" font-size="17" fill="#ffffff" opacity="0.9">三类结构的差异，本质上是信息流和训练目标的差异。</text>
+    
+    <g transform="translate(30, 665)">
+      <rect x="0" y="0" width="60" height="24" rx="12" fill="#4B6BF5"/>
+      <text x="30" y="16" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">MLM</text>
+      
+      <rect x="70" y="0" width="80" height="24" rx="12" fill="#FFB020"/>
+      <text x="110" y="16" fill="#151E32" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">TEXT2TEXT</text>
+      
+      <rect x="160" y="0" width="60" height="24" rx="12" fill="#FF5C5C"/>
+      <text x="190" y="16" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">CLM</text>
+    </g>
+  </g>
+
+  <!-- Right Content (Cards) -->
+  <g transform="translate(700, 0)">
+    <!-- Card 1: Encoder-Only -->
+    <rect x="0" y="180" width="750" height="150" rx="16" fill="#151E32" stroke="#253250" stroke-width="2"/>
+    <text x="40" y="235" font-family="'PingFang SC', 'Source Sans Pro', sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Encoder-Only</text>
+    <text x="40" y="270" font-family="'Microsoft YaHei', sans-serif" font-size="18" fill="#7582A0">BERT · RoBERTa</text>
+    <text x="230" y="255" font-family="'PingFang SC', sans-serif" font-size="22" font-weight="bold" fill="#A1B0D8">双向表征</text>
+    
+    <rect x="630" y="235" width="80" height="40" rx="20" fill="#4B6BF5"/>
+    <text x="670" y="261" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif" text-anchor="middle">MLM</text>
+
+    <!-- Card 1 Nodes -->
+    <g transform="translate(360, 255)">
+      <path d="M 0 -15 A 60 30 0 0 1 120 -15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 60 -15 A 60 30 0 0 1 180 -15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 120 -15 A 60 30 0 0 1 240 -15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 0 -15 A 120 45 0 0 1 240 -15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 0 15 A 60 30 0 0 0 120 15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 60 15 A 60 30 0 0 0 180 15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 120 15 A 60 30 0 0 0 240 15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 0 15 A 120 45 0 0 0 240 15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      
+      <circle cx="0" cy="0" r="14" fill="#40C4FF" />
+      <circle cx="60" cy="0" r="14" fill="#40C4FF" />
+      <circle cx="120" cy="0" r="14" fill="#40C4FF" />
+      <circle cx="180" cy="0" r="14" fill="#40C4FF" />
+      <circle cx="240" cy="0" r="14" fill="#40C4FF" />
+    </g>
+
+    <!-- Card 2: Encoder-Decoder -->
+    <rect x="0" y="375" width="750" height="150" rx="16" fill="#151E32" stroke="#253250" stroke-width="2"/>
+    <text x="40" y="430" font-family="'PingFang SC', 'Source Sans Pro', sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Encoder-Decoder</text>
+    <text x="40" y="465" font-family="'Microsoft YaHei', sans-serif" font-size="18" fill="#7582A0">T5 · Seq2Seq</text>
+    <text x="255" y="450" font-family="'PingFang SC', sans-serif" font-size="22" font-weight="bold" fill="#A1B0D8">条件生成</text>
+    
+    <rect x="600" y="430" width="110" height="40" rx="20" fill="#FFB020"/>
+    <text x="655" y="456" fill="#151E32" font-size="16" font-weight="bold" font-family="sans-serif" text-anchor="middle">TEXT2TEXT</text>
+
+    <!-- Card 2 Nodes -->
+    <g transform="translate(360, 450)">
+      <!-- Cross attention -->
+      <path d="M 120 15 Q 155 40 190 15" stroke="#FFC107" stroke-width="1.5" fill="none" stroke-dasharray="4 4" opacity="0.6" marker-end="url(#arrow-gold)"/>
+      <path d="M 120 15 Q 185 55 250 15" stroke="#FFC107" stroke-width="1.5" fill="none" stroke-dasharray="4 4" opacity="0.6" marker-end="url(#arrow-gold)"/>
+      
+      <!-- Cyan nodes connections -->
+      <path d="M 0 -15 A 60 30 0 0 1 120 -15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M 0 15 A 60 30 0 0 0 120 15" stroke="#40C4FF" stroke-width="1.5" fill="none" opacity="0.6"/>
+      
+      <!-- Gold nodes connections -->
+      <path d="M 190 -15 A 30 20 0 0 1 250 -15" stroke="#FFC107" stroke-width="1.5" fill="none" opacity="0.8" marker-end="url(#arrow-gold)"/>
+      
+      <!-- Nodes -->
+      <circle cx="0" cy="0" r="14" fill="#40C4FF" />
+      <circle cx="60" cy="0" r="14" fill="#40C4FF" />
+      <circle cx="120" cy="0" r="14" fill="#40C4FF" />
+      
+      <!-- Box linking line -->
+      <path d="M 134 0 L 176 0" stroke="#7582A0" stroke-width="2" fill="none" stroke-dasharray="2 2" opacity="0.5"/>
+      <polygon points="172,-4 180,0 172,4" fill="#7582A0" opacity="0.5"/>
+
+      <circle cx="190" cy="0" r="14" fill="#FFC107" />
+      <circle cx="250" cy="0" r="14" fill="#FFC107" />
+    </g>
+
+    <!-- Card 3: Decoder-Only -->
+    <rect x="0" y="570" width="750" height="150" rx="16" fill="#151E32" stroke="#253250" stroke-width="2"/>
+    <text x="40" y="625" font-family="'PingFang SC', 'Source Sans Pro', sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Decoder-Only</text>
+    <text x="40" y="660" font-family="'Microsoft YaHei', sans-serif" font-size="18" fill="#7582A0">GPT · LLaMA</text>
+    <text x="230" y="645" font-family="'PingFang SC', sans-serif" font-size="22" font-weight="bold" fill="#A1B0D8">自回归</text>
+    
+    <rect x="630" y="625" width="80" height="40" rx="20" fill="#FF5C5C"/>
+    <text x="670" y="651" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif" text-anchor="middle">CLM</text>
+
+    <!-- Card 3 Nodes -->
+    <g transform="translate(360, 645)">
+      <path d="M 0 -15 A 30 20 0 0 1 60 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      <path d="M 60 -15 A 30 20 0 0 1 120 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      <path d="M 120 -15 A 30 20 0 0 1 180 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      <path d="M 180 -15 A 30 20 0 0 1 240 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      
+      <path d="M 0 -15 A 60 30 0 0 1 120 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      <path d="M 60 -15 A 60 30 0 0 1 180 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      <path d="M 120 -15 A 60 30 0 0 1 240 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      
+      <path d="M 0 -15 A 90 40 0 0 1 180 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+      <path d="M 60 -15 A 90 40 0 0 1 240 -15" stroke="#FF5252" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+
+      <circle cx="0" cy="0" r="14" fill="#FF5252" />
+      <circle cx="60" cy="0" r="14" fill="#FF5252" />
+      <circle cx="120" cy="0" r="14" fill="#FF5252" />
+      <circle cx="180" cy="0" r="14" fill="#FF5252" />
+      <circle cx="240" cy="0" r="14" fill="#FF5252" />
+    </g>
+  </g>
+</svg>
