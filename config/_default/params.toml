@@ -16,8 +16,7 @@ SortBy = "default"
     lastUpdated = "2006-01-02"
 
 [sidebar]
-    emoji    = "💻"
-    subtitle = "CS Undergrad @ ZJUT\nAI & CV Enthusiast"
+    subtitle = "CS Undergrad @ ZJUT\nLLM&CV Enthusiast"
     avatar   = "avatar.jpg"
 
 [article]
