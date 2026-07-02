@@ -1,6 +1,6 @@
 ---
 title: "你好，世界！"
-description: "博客的第一篇文章 — 记录搭建过程和写作计划"
+description: "博客的第一篇文章，记录搭建过程和写作计划"
 date: 2026-04-12
 slug: hello-world
 image: 
@@ -11,7 +11,7 @@ tags:
     - 博客搭建
 ---
 
-## 👋 欢迎
+## 欢迎
 
 这是我的第一篇博客文章！这个博客基于 [Hugo](https://gohugo.io/) 静态站点生成器和 [Stack](https://github.com/CaiJimmy/hugo-theme-stack) 主题搭建，托管在 GitHub Pages 上。
 
@@ -25,10 +25,10 @@ tags:
 
 接下来我打算记录以下方向的内容：
 
-1. **深度学习** — Transformer、Mamba、视觉模型等
-2. **计算机视觉** — 目标检测、车道线检测、图像分割
-3. **工程实践** — PyTorch 实战、Linux 环境配置、Git 工作流
-4. **竞赛复盘** — 挑战杯、创新创业、算法竞赛等
+1. **深度学习**：Transformer、Mamba、视觉模型等
+2. **计算机视觉**：目标检测、车道线检测、图像分割
+3. **工程实践**：PyTorch 实战、Linux 环境配置、Git 工作流
+4. **竞赛复盘**：挑战杯、创新创业、算法竞赛等
 
 ## 技术栈
 
@@ -40,4 +40,4 @@ CI/CD                 : GitHub Actions
 Writing               : Markdown
 ```
 
-> 感谢你的阅读，期待与你在这里交流！
+第一篇先写到这里。后面会慢慢把学习笔记和项目复盘搬上来。

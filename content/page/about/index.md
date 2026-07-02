@@ -40,8 +40,9 @@ slug: "about"
 
 > **SIGMA-Lane: Scale-pyramId Gated MAmba for Temporally Consistent Video Lane Detection**
 > <br/>
-> <small>_Tiancheng Zhang_, Mengmeng Wang</small>
+> <small>_Tiancheng Zhang_, Mengmeng Wang, Yan Gao, Xingjie Kong, Guojiang Shen, Jiaxin Du</small>
+> <br/>
+> <small><strong>Accepted to ECCV 2026</strong></small>
 > <br/>
 > 👉 *基于 Mamba 架构设计的时序一致性视频车道线检测框架，适用于无人机等低空视角下的连续车道保持。*
-
 

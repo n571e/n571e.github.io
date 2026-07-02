@@ -1,6 +1,6 @@
 ---
-title: "基于 Transformers 的 LLM 训练流程实践：从预训练、SFT 到 LoRA"
-description: "按流程梳理 Happy-LLM 第六章的训练实践主线，包括模型初始化、预训练数据处理、Trainer/DeepSpeed、SFT 标签构造与 LoRA/peft 微调"
+title: "用 Transformers 跑通 LLM 训练流程：预训练、SFT 和 LoRA"
+description: "按流程整理 Happy-LLM 第六章：模型初始化、预训练数据处理、Trainer/DeepSpeed、SFT 标签构造与 LoRA 微调"
 date: 2026-04-21
 slug: happy-llm-transformers-training-practice
 image: cover.svg
@@ -17,13 +17,13 @@ tags:
 math: true
 ---
 
-第六章的重点很贴近主流工程实践：用 `Transformers + datasets + Trainer + DeepSpeed + peft` 这套生态把 LLM 训练流程串起来。
+第六章开始贴近工程实践：用 `Transformers + datasets + Trainer + DeepSpeed + peft` 这套生态把 LLM 训练流程串起来。
 
 这一章可以整理成一句话：
 
 > **模型怎么初始化、数据怎么整理进 Trainer、预训练和 SFT 的标签怎么分开、资源不够时怎么换成 LoRA，这四件事就是第六章的主线。**
 
-这篇文章按训练流程整理，方便回查每一步对应的框架、数据格式和关键参数。
+这篇文章按训练流程整理，方便以后回查每一步对应的框架、数据格式和参数。
 
 ---
 
@@ -40,7 +40,7 @@ math: true
     -> LoRA / peft 高效微调
 ```
 
-这条链路的重点不是某个框架名字，而是每个组件承担哪一层职责：
+这条链路要看的不是框架名字有多熟，而是每个组件承担哪一层职责：
 
 - `Transformers` 负责把模型和训练流程抽象成统一接口
 - `datasets` 负责把原始文本或对话数据整理成模型可训练的张量格式
@@ -83,11 +83,11 @@ tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True)
 ```
 
-### 2.1 `Auto*` 这套接口，本质上是在替你接住“模型族差异”
+### 2.1 `Auto*` 这套接口是在接住“模型族差异”
 
 只要配置和权重兼容，`AutoConfig`、`AutoModelForCausalLM`、`AutoTokenizer` 就能把很多模型族差异统一到同一套接口下。这样训练脚本可以把重心放在数据、参数和流程上。
 
-### 2.2 训练阶段不同，模型加载方式可能不同，但 tokenizer 契约仍然很关键
+### 2.2 训练阶段不同，模型加载方式可能不同，但 tokenizer 契约不能乱
 
 无论是 Pretrain 还是 SFT，tokenizer 都是一套输入协议。它定义的是：
 
@@ -113,7 +113,7 @@ model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True)
 3. 把多个文本段拼起来，切成固定长度 block
 4. 令 `labels = input_ids.copy()`
 
-最核心的代码骨架是这段：
+这段代码骨架最值得回看：
 
 ```python
 from datasets import load_dataset
@@ -142,7 +142,7 @@ def group_texts(examples):
     return result
 ```
 
-### 3.1 `labels = input_ids.copy()` 是预训练阶段最关键的记忆锚点
+### 3.1 `labels = input_ids.copy()` 是预训练阶段的记忆锚点
 
 这句代码明确了：**Pretrain 阶段的监督目标就是整段文本自身。**
 
@@ -154,7 +154,7 @@ def group_texts(examples):
 
 `group_texts` 的作用是把多个文本片段拼接后切成固定长度 block。预训练更关注吞吐和有效 token 利用率，而不是保留每段原始文本的天然边界。固定长度 block 可以减少 padding 浪费。
 
-### 3.2 预训练数据处理的核心是整理训练协议
+### 3.2 预训练数据处理是在整理训练协议
 
 进入框架训练后，数据处理要回答四个问题：
 
@@ -165,7 +165,7 @@ def group_texts(examples):
 
 这些细节表面上是数据预处理，实际上已经在决定模型训练看到的输入分布。
 
-复习锚点：预训练数据处理就是把“文本 -> token -> block -> labels”标准化到 `datasets.map` 里。
+复习锚点：预训练数据处理就是把“文本 -> token -> block -> labels”这条链放进 `datasets.map`。
 
 ---
 
@@ -263,7 +263,7 @@ deepspeed pretrain.py \
 
 `ds_config_zero2.json` 里最该看的关键词是 `zero_optimization.stage = 2`。这表示采用 `ZeRO-2`，主要优化优化器状态和梯度的存储开销。
 
-### 5.2 从 notebook 到脚本，增加的是训练工程外壳
+### 5.2 从 notebook 到脚本，增加的是工程外壳
 
 比如在 `pretrain.py` 里，第六章补上了很多真实训练需要的东西：
 
@@ -282,20 +282,20 @@ deepspeed pretrain.py \
 
 ---
 
-## 六、第五步：进入 SFT 之后，关键差异集中在数据构造而不是 Trainer
+## 六、第五步：进入 SFT 后，差异主要在数据构造
 
 > **Pretrain 和 SFT 可以共享同样的 Trainer、DeepSpeed 和大部分训练框架，但它们的数据构造逻辑并不一样。**
 
 原因是训练目标不同：Pretrain 学整个文本分布，SFT 学“给定指令后 assistant 应该怎样回答”。
 
-所以进入 SFT 之后，最关键的问题就变成了：
+所以进入 SFT 之后，要先问：
 
 - 对话怎么拼
 - 角色怎么标
 - 哪些 token 参与 loss
 - padding 和 mask 怎么处理
 
-第六章这里沿用了 Qwen 风格的 chat template，核心骨架大致像这样：
+第六章这里沿用了 Qwen 风格的 chat template，骨架大致像这样：
 
 ```python
 im_start = tokenizer("<|im_start|>").input_ids
@@ -313,10 +313,10 @@ def preprocess(sources, tokenizer, max_len):
     )
 ```
 
-### 6.1 这一节最核心的是 `labels` 的构造方式
+### 6.1 这一节要盯住 `labels` 的构造方式
 
 对 SFT 来说，不是所有 token 都应该参与 loss。  
-关键设计是：
+设计上要分清：
 
 - `system` 部分不参与拟合
 - `user` 部分不参与拟合
@@ -336,7 +336,7 @@ def preprocess(sources, tokenizer, max_len):
 - 角色身份
 - system/user/assistant 的结构关系
 
-因此，SFT 数据处理本质上是在定义**对话训练协议**。
+所以，SFT 数据处理其实是在定义**对话训练协议**。
 
 ### 6.3 `attention_mask` 和 padding 依然不能忽视
 
@@ -356,7 +356,7 @@ def preprocess(sources, tokenizer, max_len):
 
 第六章最后补上高效微调。它先介绍 Adapter、Prefix Tuning 等思路，再把重心落到 LoRA：用较少可训练参数完成任务适配。
 
-LoRA 最核心的形式可以写成：
+LoRA 的形式可以写成：
 
 $$
 W = W_0 + BA
@@ -392,7 +392,7 @@ model = get_peft_model(model, peft_config)
 
 ### 7.2 `peft` 抽象了 LoRA 注入过程
 
-对工程实践来说，关键记忆点是：
+对工程实践来说，我会记这几件事：
 
 - 目标层往往是 `q_proj`、`v_proj` 这类注意力投影层
 - `LoraConfig` 用来描述 LoRA 超参
@@ -406,14 +406,14 @@ model = get_peft_model(model, peft_config)
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/happy-llm/main/docs/images/6-images/3-2.jpg" alt="LoRA 原理图" width="90%" />
-  <p>图：LoRA 用低秩增量更新替代全量参数更新，是第六章高效微调部分的核心</p>
+  <p>图：LoRA 用低秩增量更新替代全量参数更新</p>
 </div>
 
 ### 7.3 LoRA 的边界
 
 LoRA 适合任务适配和低成本后训练；如果目标是让模型吸收大量新知识，它往往不是最理想路径。
 
-所以从训练链路上看，更稳妥的理解应该是：
+所以从训练链路上看，我更愿意这样理解：
 
 - Pretrain 更偏知识底座
 - SFT 更偏助手行为塑形
@@ -438,7 +438,7 @@ LoRA 适合任务适配和低成本后训练；如果目标是让模型吸收大
 
 > **Pretrain -> SFT -> LoRA**
 
-而且这条链路里，每一层的职责都更清楚了：
+这条链路里，每一层的职责也更清楚了：
 
 - 模型层负责承接结构和权重
 - 数据层负责定义训练协议
@@ -447,7 +447,7 @@ LoRA 适合任务适配和低成本后训练；如果目标是让模型吸收大
 
 `6.4` 的偏好对齐部分可以看成全景补充：训练链路后面还会走向奖励模型、RLHF、DPO 等阶段。但第六章落到可复用实践上的重点，仍是前面这条框架化训练主线。
 
-复习结论：**第六章把大模型训练放进了主流工程栈里。**
+复习结论：**第六章把大模型训练放进了主流工程栈里，而不是只停在模型结构图上。**
 
 ---
 
