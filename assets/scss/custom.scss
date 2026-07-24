@@ -244,6 +244,28 @@ body {
     letter-spacing: 0;
 }
 
+.pageview-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.pageview-value {
+    min-width: 1.5ch;
+    font-variant-numeric: tabular-nums;
+}
+
+.site-pageviews {
+    color: var(--body-text-color);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+[data-pageview-placement][hidden] {
+    display: none;
+}
+
 .article-category a,
 .article-tags a,
 .tagCloud .tagCloud-tags a {

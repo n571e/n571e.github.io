@@ -29,6 +29,10 @@ SortBy = "default"
         enabled = true
         default = "Licensed under CC BY-NC-SA 4.0"
 
+[pageViews]
+    enabled   = true
+    scriptURL = "https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"
+
 [widgets]
     homepage = [
         { type = "search" },

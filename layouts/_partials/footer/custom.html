@@ -53,3 +53,40 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
+{{ if .Site.Params.pageViews.enabled }}
+    {{ if and .IsPage (eq .Section "post") }}
+        <span class="pageview-stat" data-pageview-placement="article" hidden>
+            浏览量 <span id="busuanzi_page_pv" class="pageview-value" aria-live="polite">--</span>
+        </span>
+    {{ else if .IsHome }}
+        <section class="site-pageviews" data-pageview-placement="home" hidden>
+            总访问量 <span id="busuanzi_site_pv" class="pageview-value" aria-live="polite">--</span> 次
+        </section>
+    {{ end }}
+
+    <script>
+    (function() {
+        const counter = document.querySelector('[data-pageview-placement]');
+        if (!counter) return;
+
+        const placement = counter.dataset.pageviewPlacement;
+        if (placement === 'article') {
+            const meta = document.querySelector('.main-article .article-details .article-meta .inline-meta');
+            if (meta) {
+                meta.appendChild(counter);
+                counter.hidden = false;
+            }
+        } else if (placement === 'home') {
+            const copyright = document.querySelector('.site-footer .copyright');
+            if (copyright) {
+                copyright.insertAdjacentElement('afterend', counter);
+                counter.hidden = false;
+            }
+        }
+    })();
+    </script>
+    {{ if not hugo.IsServer }}
+        <script src="{{ .Site.Params.pageViews.scriptURL }}" defer></script>
+    {{ end }}
+{{ end }}
